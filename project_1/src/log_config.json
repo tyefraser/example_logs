@@ -1,0 +1,37 @@
+{
+    "version": 1,
+    "disable_existing_loggers": false,
+    "formatters": {
+        "simple": {
+            "format": "%(levelname)-8s - %(message)s"
+        }
+    },
+    "handlers": {
+        "stdout": {
+            "class": "logging.StreamHandler",
+            "level": "INFO",
+            "formatter": "simple",
+            "stream": "ext://sys.stdout",
+            "filters": ["warnings_and_below"]
+        },
+        "file": {
+            "class": "logging.FileHandler",
+            "formatter": "simple",
+            "filename": "L3_app.log",
+            "mode": "w"
+        }
+    },
+    "filters": {
+        "warnings_and_below": {
+            "()" : "__main__.filter_maker",
+            "level": "WARNING"
+        }
+    },
+    "root": {
+        "level": "DEBUG",
+        "handlers": [
+            "stdout",
+            "file"
+        ]
+    }
+}
